@@ -1,3 +1,6 @@
+import SerialCommunications.CommunicationsPort;
+import UI.Controller;
+import com.google.common.eventbus.EventBus;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +15,10 @@ public class Main extends Application {
     private double initX;
     private double initY;
 
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("UI/layout.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setScene(new Scene(root, 1024, 600));
 
@@ -31,6 +35,9 @@ public class Main extends Application {
                 primaryStage.setY(me.getScreenY() - initY);
             }
         });
+
+        CommunicationsPort communicationsPort = new CommunicationsPort();
+        communicationsPort.openPort();
 
         primaryStage.show();
     }

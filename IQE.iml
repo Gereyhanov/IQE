@@ -10,5 +10,7 @@
     <orderEntry type="library" name="com.jfoenix:jfoenix:1.0.0" level="project" />
     <orderEntry type="library" name="org.scream3r:jssc:2.8.0" level="project" />
     <orderEntry type="library" name="KotlinJavaRuntime" level="project" />
+    <orderEntry type="library" name="io.reactivex:rxjavafx:0.2.0" level="project" />
+    <orderEntry type="library" name="com.google.guava:guava:19.0" level="project" />
   </component>
 </module>
