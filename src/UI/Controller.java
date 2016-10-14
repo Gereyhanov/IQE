@@ -2,6 +2,9 @@ package UI;
 
 import SerialCommunications.SerialDataSingleton;
 import SerialCommunications.SerialDataListen;
+import Util.FunStringsKt;
+import Util.UserChartFunctions;
+import Util.UserModernUI;
 import com.google.common.eventbus.Subscribe;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextArea;
@@ -13,12 +16,16 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.util.Duration;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static Util.FunStringsKt.*;
 
 /**
  * Created by Rizvan on 13.10.2016.
@@ -30,7 +37,7 @@ public class Controller {
     private Timeline timeline;
     private SequentialTransition animation;
 
-    int timeRendering = 100;
+    int timeRendering = 25;
 
     Boolean aBooleanConnectButton = true;
 
@@ -47,15 +54,26 @@ public class Controller {
     @FXML
     JFXTextArea dataTextArea;
 
+    UserChartFunctions userChartAmplitude = new UserChartFunctions("Amplitude");
+
+    UserModernUI userModernUI = new UserModernUI();
+
     @FXML
-    private void initialize() {
+    LineChart lineChartViewOne = new LineChart(new NumberAxis(), new NumberAxis());
+
+        @FXML
+        private void initialize() {
         //-- Prepare Executor Services
         executor = Executors.newCachedThreadPool();
         addToQueue = new AddToQueue();
         executor.execute(addToQueue);
         animatedButton.setText("Start render");
         dataTextArea.setText("Ok.");
-        dataTextArea.setScrollTop(0.1);
+
+        lineChartViewOne.getStylesheets().add("Style/ChartAreaStyle.css");
+        lineChartViewOne.setAnimated(false);
+        lineChartViewOne.setData(userChartAmplitude.getLineChartData());
+        lineChartViewOne.createSymbolsProperty();
     }
 
     @FXML
@@ -78,7 +96,14 @@ public class Controller {
 
 
     public void render() {
-        dataTextArea.setText(dataTextArea.getText() + "\n" + SerialDataSingleton.getInstance().getData());
+        //Todo: Rendering TextArea
+        dataTextArea.setText(SerialDataSingleton.getInstance().getData());
+
+        //Todo: Rendering ChartArea
+        userModernUI.setDataVerticalArray(stringToDouble(SerialDataSingleton.getInstance().getData()));
+        userChartAmplitude.setChartStep(userModernUI.buildChartLine());
+        userChartAmplitude.show();
+
     }
 
     private class AddToQueue extends Thread {

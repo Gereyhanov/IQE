@@ -44,6 +44,7 @@ public class CommunicationsPort{
                 try {
                     //Получаем ответ от устройства, обрабатываем данные и т.д.
                     data = serialPort.readString(event.getEventValue());
+                    //System.out.println(data);
                     EventBusSerialData.eventBus.post(new SerialDataListen(data));
                     //отправка данных
                     //serialPort.writeString("Get data");

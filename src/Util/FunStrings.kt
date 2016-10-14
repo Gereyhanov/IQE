@@ -14,3 +14,6 @@ fun concatLn(argOne: String, argTwo: String):String{
 fun stringToInt (argOne: String):Int{
     return argOne.toInt()
 }
+fun stringToDouble (argOne: String):Double{
+    return argOne.toDouble()
+}

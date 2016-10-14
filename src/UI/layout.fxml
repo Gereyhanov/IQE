@@ -3,62 +3,38 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity"
-      maxWidth="-Infinity"
-      minHeight="-Infinity"
-      minWidth="-Infinity"
-      prefHeight="600.0"
-      prefWidth="1024.0"
-      style="-fx-background-color: #2c3e50;"
-      xmlns="http://javafx.com/javafx/8.0.60"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="UI.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1024.0" style="-fx-background-color: #2c3e50;"
+      xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.Controller">
     <children>
-        <JFXButton fx:id="connectButton"
-                   layoutX="20.0"
-                   layoutY="100.0"
-                   onAction="#connectEventButton"
-                   prefHeight="35.0"
-                   prefWidth="150.0"
-                   ripplerFill="#1abc9c"
-                   style="-fx-background-color: #95a5a6;"
-                   text="Connect" />
+        <JFXButton fx:id="connectButton" layoutX="20.0" layoutY="100.0" onAction="#connectEventButton" prefHeight="35.0" prefWidth="150.0" ripplerFill="#1abc9c" style="-fx-background-color: #95a5a6;" text="Connect" />
 
-        <JFXButton fx:id="animatedButton"
-                   layoutX="200.0"
-                   layoutY="100.0"
-                   onAction="#animatedEventButton"
-                   prefHeight="35.0"
-                   prefWidth="150.0"
-                   ripplerFill="#1abc9c"
-                   style="-fx-background-color: #95a5a6;" />
+        <JFXButton fx:id="animatedButton" layoutX="200.0" layoutY="100.0" onAction="#animatedEventButton" prefHeight="35.0" prefWidth="150.0" ripplerFill="#1abc9c" style="-fx-background-color: #95a5a6;" />
 
-        <JFXTextField fx:id="selectSerialField"
-                      focusColor="#1abc9c"
-                      layoutX="20.0"
-                      layoutY="50.0"
-                      prefHeight="35.0"
-                      prefWidth="150.0"
-                      promptText="Enter the number of CP"
-                      unFocusColor="#95a5a6">
+        <JFXTextField fx:id="selectSerialField" focusColor="#1abc9c" layoutX="20.0" layoutY="50.0" prefHeight="35.0" prefWidth="150.0" promptText="Enter the number of CP" unFocusColor="#95a5a6">
             <font>
                 <Font name="SFUIText-Light" size="12.0" />
             </font>
         </JFXTextField>
 
-        <JFXTextArea fx:id="dataTextArea"
-                     layoutX="20.0"
-                     layoutY="150.0"
-                     prefHeight="430.0"
-                     prefWidth="150.0"
-                     promptText="Window to display the data from com port">
+        <JFXTextArea fx:id="dataTextArea" layoutX="20.0" layoutY="150.0" prefHeight="430.0" prefWidth="150.0" promptText="Window to display the data from com port">
             <font>
                 <Font name="SFUIText-Light" size="12.0" />
             </font>
         </JFXTextArea>
+
+        <LineChart fx:id="lineChartViewOne" layoutX="199.0" layoutY="130.0" prefHeight="450.0" prefWidth="800.0" title="One">
+            <xAxis>
+                <NumberAxis lowerBound="0" tickLabelFill="WHITE" tickUnit="1.0" upperBound="3.0" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis lowerBound="0" tickLabelFill="WHITE" tickUnit="1" upperBound="3" />
+            </yAxis>
+        </LineChart>
 
 
     </children>
